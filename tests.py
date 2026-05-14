@@ -14,12 +14,24 @@ class TestBooksCollector:
 
         assert book_name in collector.get_books_genre()
 
-    def test_add_new_book_with_negative_value_long_name(self):
+    def test_add_new_book_add_two_books_with_same_names(self):
         collector = BooksCollector()
 
-        result = collector.add_new_book('Что делать, если ваш кот хочет вас убить........?')
+        collector.add_new_book('Гордость и предубеждение и зомби')
+        collector.add_new_book('Гордость и предубеждение и зомби')
 
-        assert 'Что делать, если ваш кот хочет вас убить........?' not in collector.get_books_genre()
+        assert len(collector.get_books_genre()) == 1
+
+    @pytest.mark.parametrize('name_book', [
+        'Что делать, если ваш кот хочет вас убить........?',
+        ''
+    ])
+    def test_add_new_book_with_negative_value_long_name(self, name_book):
+        collector = BooksCollector()
+
+        collector.add_new_book(name_book)
+
+        assert name_book not in collector.get_books_genre() 
 
     def test_set_book_genre_set_genre_for_added_book(self):
         collector = BooksCollector()
@@ -111,6 +123,7 @@ class TestBooksCollector:
         assert book_name not in result
 
 
+
     def test_add_book_in_favorites_for_book_in_list(self):
         collector = BooksCollector()
 
@@ -119,6 +132,15 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Гордость и предубеждение и зомби')
 
         assert  'Гордость и предубеждение и зомби' in collector.get_list_of_favorites_books()
+
+    def test_add_book_in_favorites_for_book_not_in_list(self):
+        collector = BooksCollector()
+
+        collector.add_new_book('Гордость и предубеждение и зомби')
+
+        collector.add_book_in_favorites('Шерлок Холмс')
+
+        assert  'Шерлок Холмс' not in collector.get_list_of_favorites_books()
 
     def test_delete_book_from_favorites_for_books_are_inside(self):
         collector = BooksCollector()

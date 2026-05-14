@@ -6,7 +6,8 @@
 
 ### 1. Добавление новых книг
 - `test_add_new_book_add_one_book_with_positive_value` — добавление книги с корректным названием (параметризованный тест: 2 названия)
-- `test_add_new_book_with_negative_value_long_name` — попытка добавить книгу с названием длиннее 40 символов (книга не добавляется)
+- `test_add_new_book_add_two_books_with_same_names` — попытка добавить две книги с одинаковыми названиями
+- `test_add_new_book_with_negative_value_long_name` — попытка добавить книги с некорректным названием (параметризованный тест: 2 названия)
 
 ### 2. Установка жанра книги
 - `test_set_book_genre_set_genre_for_added_book` — установка жанра для существующей книги
@@ -26,6 +27,7 @@
 
 ### 6. Избранное
 - `test_add_book_in_favorites_for_book_in_list` — добавление существующей книги в избранное
+- `test_add_book_in_favorites_for_book_not_in_list` — попытка добавить несуществующую книги в избранное
 - `test_delete_book_from_favorites_for_books_are_inside` — удаление книги из избранного
 - `test_get_list_of_favorites_books_for_empty_list` — получение списка избранного для пустой коллекции
 
